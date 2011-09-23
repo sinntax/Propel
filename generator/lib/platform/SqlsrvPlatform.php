@@ -20,6 +20,19 @@ require_once dirname(__FILE__) . '/MssqlPlatform.php';
 class SqlsrvPlatform extends MssqlPlatform
 {
 	/**
+	* Initializes db specific domain mapping.
+	*/
+	protected function initialize()
+	{
+		parent::initialize();
+		$this->setSchemaDomainMapping(new Domain(PropelTypes::DATE, "DATETIME2"));
+		$this->setSchemaDomainMapping(new Domain(PropelTypes::BU_DATE, "DATETIME2"));
+		$this->setSchemaDomainMapping(new Domain(PropelTypes::TIME, "DATETIME2"));
+		$this->setSchemaDomainMapping(new Domain(PropelTypes::TIMESTAMP, "DATETIME2"));
+		$this->setSchemaDomainMapping(new Domain(PropelTypes::BU_TIMESTAMP, "DATETIME2"));
+	}
+	
+	/**
 	 * @see        Platform#getMaxColumnNameLength()
 	 */
 	public function getMaxColumnNameLength()
